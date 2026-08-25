@@ -261,6 +261,22 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/python,macos,windows,linux,jupyternotebooks
 
 
-data/
 *.pkl
+
+# Restricted or local-only inputs
+data/external/*
+!data/external/wido_expected_schema.csv
+**/wirkst_export.csv
+**/fact_wido_observed.csv
+*.duckdb
+*.parquet
+
+# Power BI local caches and imported-data binaries
+**/.pbi/
+**/DAXQueries/
+*.pbix
+*backup*/
+*bkup*/
+*.bak
+*.tmp
 

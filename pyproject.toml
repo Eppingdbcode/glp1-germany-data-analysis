@@ -1,22 +1,13 @@
 [project]
-name = "dpp-template"
+name = "glp1-germany-data-analysis"
 version = "0.1.0"
-description = "Add your description here"
+description = "Reproducible analysis of obesity, population, diabetes costs, and GLP-1 utilization in Germany"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "ipykernel>=7.0.1",
-    "kagglehub>=0.3.13",
     "matplotlib>=3.10.7",
     "pandas>=2.3.3",
-    "seaborn>=0.13.2",
-    "duckdb>=1.4.1",
-    "scikit-learn>=1.7.2",
+    "nbclient>=0.10.2",
+    "nbformat>=5.10.4",
 ]
-
-[build-system]
-requires = ["uv_build>=0.8.9,<0.9.0"]
-build-backend = "uv_build"
-
-[tool.uv.build-backend]
-module-name = "core"

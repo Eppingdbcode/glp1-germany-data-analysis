@@ -1,0 +1,7 @@
+active_ingredient,reference_product,authorisation_date,authorisation_sort,indication,ema_url,authorisation_scope,accessed_on,input_class
+Exenatid,Byetta,20.11.2006,20061120,Typ-2-Diabetes,https://www.ema.europa.eu/en/medicines/human/EPAR/byetta,"EU-weite Zulassung; kein Datum der Markteinführung in Deutschland",2026-08-24,observed_regulatory_data
+Liraglutid,Victoza,30.06.2009,20090630,Typ-2-Diabetes,https://www.ema.europa.eu/en/medicines/human/EPAR/victoza,"EU-weite Zulassung; kein Datum der Markteinführung in Deutschland",2026-08-24,observed_regulatory_data
+Dulaglutid,Trulicity,21.11.2014,20141121,Typ-2-Diabetes,https://www.ema.europa.eu/en/medicines/human/EPAR/trulicity,"EU-weite Zulassung; kein Datum der Markteinführung in Deutschland",2026-08-24,observed_regulatory_data
+Liraglutid,Saxenda,23.03.2015,20150323,Gewichtsmanagement,https://www.ema.europa.eu/en/medicines/human/EPAR/saxenda,"EU-weite Zulassung; kein Datum der Markteinführung in Deutschland",2026-08-24,observed_regulatory_data
+Semaglutid,Ozempic,08.02.2018,20180208,Typ-2-Diabetes,https://www.ema.europa.eu/en/medicines/human/EPAR/ozempic,"EU-weite Zulassung; kein Datum der Markteinführung in Deutschland",2026-08-24,observed_regulatory_data
+Semaglutid,Wegovy,06.01.2022,20220106,Gewichtsmanagement,https://www.ema.europa.eu/en/medicines/human/EPAR/wegovy,"EU-weite Zulassung; kein Datum der Markteinführung in Deutschland",2026-08-24,observed_regulatory_data

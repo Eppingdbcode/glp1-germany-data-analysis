@@ -1,85 +1,70 @@
-# 📋 Template-Anleitung
+# GLP-1 use, obesity and diabetes costs in Germany
 
-> **Für Kursteilnehmer*innen:** Diese Sektion nach dem Setup deines Projekts löschen!
+This project assembles official German population, obesity and disease-cost evidence with an authorized 2024 WIdO GLP-1 market extract to describe the current context for evaluating obesity-treatment reimbursement in the statutory health insurance system (GKV). It is descriptive and does not estimate treatment effects, savings, ROI or budget impact.
 
-## So verwenden Sie dieses Template:
-Dieses Template hilft dir, dein Data Science Projekt effizient zu organisieren und zu dokumentieren. Es bietet eine gängige Struktur, um deine Arbeit zu planen, durchzuführen und zu präsentieren.
+## Research question
 
-### 1. Template verwenden
-Templates können in GitHub über den Button **"Use this template" -> "Create a new repository"** in der oberen rechten Ecke in ein eigenes Repository überführt werden. Nutze diese Vorlage als Inspiration und passe sie an dein Projekt an! 
+When, and for whom, could reimbursement of GLP-1/GIP treatment for obesity plausibly reduce the clinical and economic burden associated with diabetes in Germany's GKV—and what can the currently available data actually support?
 
-### 2. Projekt klonen
-Danach kannst du dein neues Repository direkt über VS Code klonen. Dazu öffnest du in VS Code die Kommando-Palette (Strg+Shift+P) bzw. (Cmd+Shift+P) auf dem Mac und gibst **"Git: Clone"** ein. Wähle dann "Clone from GitHub..." und melde dich ggf. bei GitHub an. Suche nach deinem Repository und wähle einen lokalen Ordner aus, in dem das Projekt gespeichert werden soll.
+## Key findings
 
-### 3. Abhängigkeiten installieren
-Nachdem du das Repository geklont hast, musst du die Abhängigkeiten installieren. Öffne dazu ein neues Terminal in VS Code über die Menüleiste "Terminal"->"Neues Terminal" und führe die folgenden Befehle aus:
+| Finding | Result | Interpretation |
+|---|---:|---|
+| Adult obesity prevalence | 12.2% (2003/04) → 19.7% (2023) | Increase of 7.5 percentage points; published survey estimates |
+| Resident population | approximately 83.5 million (2025) | Registered population at year end |
+| Direct diabetes costs | EUR 9.685 billion (2023) | ICD-10 E10–E14, all payers; diabetes mellitus diagnosis group, not limited to type 2 diabetes |
+| Four included GLP-1 ingredients | 2.674 million prescriptions; EUR 582.2 million reported medicine costs (2024) | Authorized WIdO data; prescriptions are not patients and indication is unavailable |
 
-```bash
-uv sync
-```
+## Data workflow
 
-### 4. Erweiterungen hinzufügen
-Für dieses Projekt empfehlen wir die Installation der folgenden VS Code Erweiterungen:
-- **Python** (Microsoft) - Bietet Unterstützung für Python-Entwicklung.
-- **Jupyter** (Microsoft) - Ermöglicht das Arbeiten mit Jupyter Notebooks direkt in VS Code.
-- **Even Better TOML** (tamasfe) - Verbessert die Bearbeitung von TOML-Dateien.
-- **Ruff** (Astral Software) - Ein schneller Linter für Python, der dir hilft, sauberen Code zu schreiben.
-- **Material Icon Theme** (PKief) - Verbessert die Dateisymbole in VS Code für eine bessere Übersicht.
+`raw public data → import and inspection → cleaning and validation → processed data → analytical notebooks and visualizations → Power BI-ready exports → measures/model documentation → dashboard and conclusions`
 
-Dafür kannst du den Erweiterungs-Tab in VS Code öffnen (Symbol mit den vier Quadraten auf der linken Seitenleiste) und in die Suchleiste `@recommended` eingeben. Danach sollten dir die empfohlenen Erweiterungen angezeigt werden.
+## Obesity development
 
-### Notebooks ausführen
-Im Ordner `notebooks/` findest du ein Jupyter Notebook namens `01_exploration.ipynb`, das als Ausgangspunkt für deine Datenanalyse dient. Öffne das Notebook in VS Code und wähle oben rechts dein virtuelles Environment als Kernel aus. Führe die Zellen nacheinander aus. Wenn alles geklappt hat wird das Notebook einen Datensatz von Kaggle laden und im Ordner `data/` speichern.
+![Obesity prevalence trend](images/obesity/obesity_prevalence_trend.png)
 
-Von hier an kannst du mit deinem Projekt starten und die Vorlagen nach belieben anpassen.
+## Population structure
 
-Schaue dir für weitere Informationen zum Template die Datei [docs/project.md](./docs/project.md) an.
+![Population by federal state](images/population/population_by_federal_state_2025.png)
 
+![Population by age group](images/population/population_by_age_group_2025.png)
 
-Für dein Projekt kannst du die folgenden Abschnitte in der `README.md` Datei anpassen, um dein Projekt zu beschreiben und zu präsentieren. Lösche anschließend diese Anleitung.
+## GLP-1 market snapshot
 
----
+These figures are derived analytical results from authorized external WIdO PharMaAnalyst data; the underlying observations are not redistributed.
 
-# [DEIN PROJEKTTITEL HIER] 🚀
+![GLP-1 prescriptions](images/glp1/glp1_prescriptions_by_ingredient_2024.png)
 
-> Eine kurze, prägnante Beschreibung deines Data Science Projekts in 1-2 Sätzen.
+![GLP-1 reported medicine costs](images/glp1/glp1_costs_by_ingredient_2024.png)
 
-## 📊 Projektübersicht
+## Disease costs
 
-**Problemstellung:** 
-<!-- Beschreibe das Problem, das du lösen möchtest -->
+![Disease costs comparison](images/disease_costs/disease_costs_comparison.png)
 
-**Ziel:** 
-<!-- Was ist das Hauptziel deines Projekts? -->
+## Final Power BI dashboard
 
-**Methoden:** 
-<!-- Welche Techniken/Algorithmen verwendest du? -->
+![Overview](powerbi/screenshots/01_overview.png)
 
+![Population](powerbi/screenshots/02_population.png)
 
+![GLP-1 authorisations and GKV use](powerbi/screenshots/03_glp1.png)
 
-## Setup
+![Insights](powerbi/screenshots/04_insights.png)
 
-Klone das Repository
-```bash
-# Repository klonen
-git clone [DEIN-REPO-LINK]
-cd [REPO-NAME]
-```
+![Sources](powerbi/screenshots/05_sources.png)
 
-Installiere [uv](https://uv.dev) (falls noch nicht installiert) und synchronisiere die Abhängigkeiten
-```bash
-# Dependencies installieren
-uv sync
-```
+## Repository structure
 
-### Ausführung
+- `data/`: redistributable raw, processed and Power BI-ready tables; external schema only for WIdO.
+- `notebooks/`: seven executed notebooks covering import through reconciliation.
+- `images/`: exported analytical figures.
+- `powerbi/`: dashboard screenshots, DAX measure catalog and model documentation.
+- `docs/`: concise methodology and source notes.
 
-Notebooks in dieser Reihenfolge ausführen:
-1. notebooks/01_exploration.ipynb
-<!--
-2. notebooks/02_preprocessing.ipynb
-3. notebooks/03_modeling.ipynb
-4. notebooks/04_results.ipynb
--->
+## Reproduction
 
+Install [uv](https://docs.astral.sh/uv/), run `uv sync`, then execute notebooks 01–07 in order from the repository root. Notebook 07 deterministically creates `data/powerbi_exports/`. The WIdO notebook runs without a local file and prints acquisition/location guidance; full WIdO reproduction requires an authorized export at `data/external/wirkst_export.csv` matching `data/external/wido_expected_schema.csv`.
 
+## Data and licensing limitations
+
+Public-source tables are redistributed with provenance documented in `docs/data_sources.md`. WIdO redistribution rights were not confirmed, so neither original nor processed observations are included: that module is **reproducible with authorized external data**. Outputs and screenshots are retained as derived results. Periods and source methods differ and must not be treated as directly comparable. Prescriptions are not patients; indication is unavailable; associations are not causal. No causal effect, savings, ROI or budget impact can be inferred.

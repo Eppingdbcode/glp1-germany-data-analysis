@@ -1,0 +1,25 @@
+// Measures referenced by the final Spec Full dashboard, plus required dependencies.
+Population = SUM ( fact_population_state_age_sex[population_persons] )
+Population Context = VAR SelectedYear = SELECTEDVALUE ( fact_population_state_age_sex[year] ) RETURN CALCULATE ( [Population], fact_population_state_age_sex[year] = COALESCE ( SelectedYear, 2025 ) )
+Population Share National = DIVIDE ( [Population Context], CALCULATE ( [Population Context], REMOVEFILTERS ( dim_geography ), REMOVEFILTERS ( dim_sex ) ) )
+Population Display = SUBSTITUTE ( FORMAT ( DIVIDE ( [Population Context], 1000000 ), "0.0" ), ",", "." ) & " Mio."
+Population Share Display = SUBSTITUTE ( FORMAT ( [Population Share National] * 100, "0.0" ), ",", "." ) & "%"
+
+Obesity Prevalence (%) = SELECTEDVALUE ( fact_obesity_observed[estimate_pct] )
+Obesity Prevalence 2023 (%) = CALCULATE ( SELECTEDVALUE ( fact_obesity_observed[estimate_pct] ), dim_date[date_key] = "2023" )
+Adipositas Startwert = CALCULATE ( SELECTEDVALUE ( fact_obesity_observed[estimate_pct] ), dim_date[date_key] = "2003/2004" )
+Adipositas Endwert = CALCULATE ( SELECTEDVALUE ( fact_obesity_observed[estimate_pct] ), dim_date[date_key] = "2023" )
+Adipositas Veränderung pp = [Adipositas Endwert] - [Adipositas Startwert]
+Adipositasprävalenz Anzeige = [Obesity Prevalence (%)]
+Obesity Prevalence 2023 Display = SUBSTITUTE ( FORMAT ( [Obesity Prevalence 2023 (%)], "0.0" ), ",", "." ) & "%"
+Adipositas Veränderung pp Display = SUBSTITUTE ( FORMAT ( [Adipositas Veränderung pp], "+0.0;-0.0;0.0" ), ",", "." ) & " Prozentpunkte"
+
+Disease Cost (Million EUR) = CALCULATE ( SUM ( fact_disease_cost_observed[value] ), fact_disease_cost_observed[unit] = "Mill. EUR" )
+Diabetes Cost Selected Mio EUR = CALCULATE ( [Disease Cost (Million EUR)], fact_disease_cost_observed[diagnosis_code] = "E10-E14" )
+Diabetes Cost 2023 Mio EUR = CALCULATE ( [Diabetes Cost Selected Mio EUR], fact_disease_cost_observed[year] = 2023 )
+Diabetes Cost 2023 Display = FORMAT ( DIVIDE ( [Diabetes Cost 2023 Mio EUR], 1000 ), "0.00" ) & " Mrd. €"
+
+WIdO Net Cost (EUR) = SUM ( fact_wido_observed[net_cost_thousand_eur] ) * 1000
+Verordnungen absolut = SUM ( fact_wido_observed[prescriptions_thousand] ) * 1000
+Prescriptions Observed = [Verordnungen absolut]
+Arzneimittelkosten Mio EUR = DIVIDE ( [WIdO Net Cost (EUR)], 1000000 )

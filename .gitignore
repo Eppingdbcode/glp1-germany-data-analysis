@@ -280,3 +280,6 @@ data/external/*
 *.bak
 *.tmp
 
+# Local Power BI files containing embedded data
+powerbi/Local/
+

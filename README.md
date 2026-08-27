@@ -25,7 +25,7 @@ When, and for whom, could reimbursement of GLP-1/GIP treatment for obesity plaus
 
 ## Population structure
 
-![Population by federal state](images/population/population_by_federal_state_2025.png)
+![Population by federal state](images/population/population_by_federal_state_2025_powerbi.png)
 
 ![Population by age group](images/population/population_by_age_group_2025.png)
 

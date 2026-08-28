@@ -1,6 +1,6 @@
 # GLP-1 use, obesity and diabetes costs in Germany
 
-This project assembles official German population, obesity and disease-cost evidence with an authorized 2024 WIdO GLP-1 market extract to describe the current context for evaluating obesity-treatment reimbursement in the statutory health insurance system (GKV). It is descriptive and does not estimate treatment effects, savings, ROI or budget impact.
+This project assembles official German population, obesity and disease-cost evidence with a legitimately obtained 2024 WIdO GLP-1 market export to describe the current context for evaluating obesity-treatment reimbursement in the statutory health insurance system (GKV). It is descriptive and does not estimate treatment effects, savings, ROI or budget impact.
 
 ## Research question
 
@@ -13,11 +13,13 @@ When, and for whom, could reimbursement of GLP-1/GIP treatment for obesity plaus
 | Adult obesity prevalence | 12.2% (2003/04) → 19.7% (2023) | Increase of 7.5 percentage points; published survey estimates |
 | Resident population | approximately 83.5 million (2025) | Registered population at year end |
 | Direct diabetes costs | EUR 9.685 billion (2023) | ICD-10 E10–E14, all payers; diabetes mellitus diagnosis group, not limited to type 2 diabetes |
-| Four included GLP-1 ingredients | 2.674 million prescriptions; EUR 582.2 million reported medicine costs (2024) | Authorized WIdO data; prescriptions are not patients and indication is unavailable |
+| Four included GLP-1 ingredients | 2.674 million prescriptions; EUR 582.2 million reported medicine costs (2024) | Legitimately obtained WIdO data; prescriptions are not patients and indication is unavailable |
 
 ## Data workflow
 
-`raw public data → import and inspection → cleaning and validation → processed data → analytical notebooks and visualizations → Power BI-ready exports → measures/model documentation → dashboard and conclusions`
+`archived public RAW snapshots → documented manual or source-specific structuring → preserved processed data → analytical notebooks and visualizations → Power BI-ready exports → measures/model documentation → dashboard and conclusions`
+
+The repository preserves auditable public RAW and processed snapshots, but it does not currently implement a complete automated RAW-to-processed pipeline. The Destatis archives are inspected rather than fully rebuilt by notebook code; RKI aggregate values were manually transcribed from the official publication; and selected EMA fields were manually curated from individual EPAR pages. No acquisition API or OCR pipeline is implemented.
 
 ## Obesity development
 
@@ -31,7 +33,7 @@ When, and for whom, could reimbursement of GLP-1/GIP treatment for obesity plaus
 
 ## GLP-1 market snapshot
 
-These figures are derived analytical results from authorized external WIdO PharMaAnalyst data; the underlying observations are not redistributed.
+These figures are derived analytical results from legitimately obtained external WIdO PharMaAnalyst data; the underlying observations are not redistributed.
 
 ![GLP-1 prescriptions](images/glp1/glp1_prescriptions_by_ingredient_2024.png)
 
@@ -63,8 +65,8 @@ These figures are derived analytical results from authorized external WIdO PharM
 
 ## Reproduction
 
-Install [uv](https://docs.astral.sh/uv/), run `uv sync`, then execute notebooks 01–07 in order from the repository root. Notebook 07 deterministically creates `data/powerbi_exports/`. The WIdO notebook runs without a local file and prints acquisition/location guidance; full WIdO reproduction requires an authorized export at `data/external/wirkst_export.csv` matching `data/external/wido_expected_schema.csv`.
+Install [uv](https://docs.astral.sh/uv/), run `uv sync`, then execute notebooks 01–07 in order from the repository root. This reproduces analysis from the preserved processed public tables, and notebook 07 deterministically creates `data/powerbi_exports/`. It does not reconstruct every processed table from RAW. The WIdO notebook runs without a local file and prints acquisition/location guidance; full WIdO reproduction requires an independently obtained legitimate export at `data/external/wirkst_export.csv` matching `data/external/wido_expected_schema.csv`.
 
 ## Data and licensing limitations
 
-Public-source tables are redistributed with provenance documented in `docs/data_sources.md`. WIdO redistribution rights were not confirmed, so neither original nor processed observations are included: that module is **reproducible with authorized external data**. Outputs and screenshots are retained as derived results. Periods and source methods differ and must not be treated as directly comparable. Prescriptions are not patients; indication is unavailable; associations are not causal. No causal effect, savings, ROI or budget impact can be inferred.
+Public RAW and processed snapshots are redistributed with provenance documented in `docs/data_sources.md`; their analytical use is reproducible and auditable, while full RAW-to-processed automation remains incomplete. RKI values were manually structured from published aggregate estimates and confidence intervals, and EMA fields were manually curated. WIdO redistribution rights were not confirmed, so neither original nor processed row-level observations are included: that module is **conditionally reproducible with an independently obtained legitimate export**. Outputs and screenshots are retained as derived results. Periods and source methods differ and must not be treated as directly comparable. Prescriptions are not patients; indication is unavailable; associations are not causal. No causal effect, savings, ROI or budget impact can be inferred.
